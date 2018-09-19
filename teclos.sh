@@ -1,18 +1,18 @@
 #!/bin/bash
 ################################################################################
 #
-# Scrip Created by http://CryptoLions.io
+# Script originally created by http://CryptoLions.io
 # https://github.com/CryptoLions/scripts/
+#
+# Modified for Telos http://testnet.telosfoundation.io/
 #
 ###############################################################################
 
-NODEOSBINDIR="/home/eos-v1.0/eos/build/programs"
+NODEOSBINDIR="/home/telos/build/programs"
 
 WALLETHOST="127.0.0.1"
 NODEHOST="127.0.0.1"
 NODEPORT="8888"
 WALLETPORT="3000"
 
-
-
-$NODEOSBINDIR/cleos/cleos -u http://$NODEHOST:$NODEPORT --wallet-url http://$WALLETHOST:$WALLETPORT "$@"
+$NODEOSBINDIR/teclos/teclos -u http://$NODEHOST:$NODEPORT --wallet-url http://$WALLETHOST:$WALLETPORT "$@"
