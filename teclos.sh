@@ -1,18 +1,23 @@
 #!/bin/bash
+
 ################################################################################
 #
-# Script originally created by http://CryptoLions.io
-# https://github.com/CryptoLions/scripts/
+# Script created by http://CryptoLions.io
+# For EOS mainnet
+# https://github.com/CryptoLions/EOS-MainNet
 #
-# Modified for Telos http://testnet.telosfoundation.io/
+# Modified for Telos Testnet
+# last edited by Telos Vancouver 20180921
 #
 ###############################################################################
 
-NODEOSBINDIR="/home/telos/build/programs"
+NODEOSBINDIR="/opt/TelosTestnet/telos/build/programs"
 
-WALLETHOST="127.0.0.1"
 NODEHOST="127.0.0.1"
 NODEPORT="8888"
+
+WALLETHOST="127.0.0.1"
 WALLETPORT="3000"
+
 
 $NODEOSBINDIR/teclos/teclos -u http://$NODEHOST:$NODEPORT --wallet-url http://$WALLETHOST:$WALLETPORT "$@"
