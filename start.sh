@@ -1,20 +1,25 @@
 #!/bin/bash
+
 ################################################################################
 #
-# Scrip Created by http://CryptoLions.io
-# https://github.com/CryptoLions/EOS-Jungle-Testnet
+# Script created by http://CryptoLions.io
+# For EOS mainnet
+# https://github.com/CryptoLions/EOS-MainNet
+#
+# Modified for Telos Testnet
+# last edited by Telos Vancouver 20180921
 #
 ###############################################################################
 
+DATADIR="/opt/TelosTestnet/Data"
+NODEOSBINDIR="/opt/TelosTestnet/telos/build/programs/"
 
-NODEOSBINDIR="/home/eos-v1.0/eos/build/programs/nodeos"
-DATADIR="/opt/JungleTestnet"
 
 $DATADIR/stop.sh
 echo -e "Starting Nodeos \n";
 
+ulimit -c unlimited
 ulimit -n 65535
 ulimit -s 64000
 
-
-$NODEOSBINDIR/nodeos --data-dir $DATADIR --config-dir $DATADIR "$@" > $DATADIR/stdout.txt 2> $DATADIR/stderr.txt &  echo $! > $DATADIR/nodeos.pid
+$NODEOSBINDIR/nodeos/nodeos --data-dir $DATADIR --config-dir $DATADIR "$@" > $DATADIR/stdout.txt 2> $DATADIR/stderr.txt &  echo $! > $DATADIR/nodeos.pid
