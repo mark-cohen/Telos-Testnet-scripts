@@ -1,12 +1,18 @@
+
 #!/bin/bash
+
 ################################################################################
 #
-# Scrip Created by http://CryptoLions.io
-# https://github.com/CryptoLions/EOS-Jungle-Testnet
+# Script created by http://CryptoLions.io
+# For EOS mainnet
+# https://github.com/CryptoLions/EOS-MainNet
+#
+# Modified for Telos Testnet
+# last edited by Telos Vancouver 20180921
 #
 ###############################################################################
 
-DIR="/opt/JungleTestnet/Wallet"
+DIR="/opt/TelosTestnet/Data/telos-wallet"
 
     if [ -f $DIR"/wallet.pid" ]; then
         pid=$(cat $DIR"/wallet.pid")
@@ -14,7 +20,7 @@ DIR="/opt/JungleTestnet/Wallet"
         kill $pid
         rm -r $DIR"/wallet.pid"
 
-        echo -ne "Stoping Wallet"
+        echo -ne "Stopping Wallet"
 
         while true; do
             [ ! -d "/proc/$pid/fd" ] && break
@@ -24,4 +30,3 @@ DIR="/opt/JungleTestnet/Wallet"
         echo -ne "\rWallet stopped. \n"
 
     fi
-
