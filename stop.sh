@@ -11,7 +11,7 @@
 #
 ###############################################################################
 
-DIR="/opt/TelosTestnet/data"
+DIR="/opt/TelosTestnet/Data"
 
 
  if [ -f $DIR"/nodeos.pid" ]; then
