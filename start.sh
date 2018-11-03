@@ -11,7 +11,7 @@
 #
 ###############################################################################
 
-DATADIR="/opt/TelosTestnet/data"
+DATADIR="/opt/TelosTestnet/Data"
 NODEOSBINDIR="/opt/TelosTestnet/telos/build/programs/"
 
 
