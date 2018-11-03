@@ -7,11 +7,11 @@
 # https://github.com/CryptoLions/EOS-MainNet
 #
 # Modified for Telos Testnet
-# last edited by Telos Vancouver 20180921
+# last edited by Telos Vancouver 20181102
 #
 ###############################################################################
 
-DIR="/opt/TelosTestnet/Data"
+DIR="/opt/TelosTestnet/data"
 
 
  if [ -f $DIR"/nodeos.pid" ]; then
