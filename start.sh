@@ -7,11 +7,11 @@
 # https://github.com/CryptoLions/EOS-MainNet
 #
 # Modified for Telos Testnet
-# last edited by Telos Vancouver 20180921
+# last edited by Telos Vancouver 20181102
 #
 ###############################################################################
 
-DATADIR="/opt/TelosTestnet/Data"
+DATADIR="/opt/TelosTestnet/data"
 NODEOSBINDIR="/opt/TelosTestnet/telos/build/programs/"
 
 
