@@ -11,7 +11,7 @@ BACKUP_DIR="/opt/TelosTestnet/Backup"
 # define path to AWS CLI executable
 AWS="/home/ubuntu/.local/bin/aws"
 # define S3 bucket/path
-S3_DIR="s3://telos-backup-aws-region/Ubuntu-16"
+S3_DIR="s3://telos-backups-us-west-2a/Ubuntu-16/"
 
 
 if [ ! -d "$LOG_DIR" ]; then
@@ -20,6 +20,9 @@ fi
 
 cp /var/log/telos_backup.log $LOG_DIR/$LOGNAME
 rm -f /var/log/telos_backup.log  && touch /var/log/telos_backup.log
+
+#change to working directory
+cd /opt/TelosTestnet/Data/
 
 #stop nodeos:
 ./stop.sh
@@ -37,13 +40,13 @@ cp -R $SOURCE_DIR/state $BACKUP_DIR/state_temp
 ./start.sh
 
 
-#change to backup directory:
+# change to backup directory:
 cd $BACKUP_DIR
 
 # delete old backups:
- if [ -f "backup.tgz.1" ]; then
+  if [ -f "backup.tgz.1" ]; then
         rm backup.1.tgz
-            sleep 1
+             sleep 1
     fi
 
 # rename current backup:
@@ -54,21 +57,17 @@ mv backup.tgz backup.1.tgz
 echo "Compressing files" >> /var/log/telos_backup.log
 tar -czSvvf backup.tgz blocks_temp state_temp >> /var/log/telos_backup.log
 
+# copy backup to remote storage:
+echo "Copying to S3 storage" >> /var/log/telos_backup.log
+$AWS s3 cp backup.tgz $S3_DIR
+
+# rename/timestamp backup:
+# mv backup.tgz backup-`date +%Y-%m-%d-%H-%M`.tgz
+
 # delete temp storage:
 echo "Deleting temp storage" >> /var/log/telos_backup.log
 rm -Rf blocks_temp
 rm -Rf state_temp
-
-# copy backup to remote storage:
-echo "Copying to S3 storage" >> /var/log/telos_backup.log
-$AWS s3 cp backup.tgz $S3_DIR/
-
-# rename/timestamp remote backup:
-$AWS s3 mv $S3_DIR/backup.tgz $S3_DIR/backup-`date +%Y-%m-%d-%H-%M`.tgz
-
-# delete local backup:
-# echo "Deleting local backup" >> /var/log/telos_backup.log
-# rm -rf backup.tgz
 
 # stamp the log #
 echo Backup complete >> /var/log/telos_backup.log
